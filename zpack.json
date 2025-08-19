@@ -1,6 +1,6 @@
 {
   "$schema": "https://github.com/glzr-io/zebar/raw/v3.0.1/resources/zpack-schema.json",
-  "name": "overline-zebar",
+  "name": "my-overline-zebar",
   "version": "0.0.0",
   "description": "Fully featured topbar using React+Vite, Tailwind & Framer Motion. ",
   "tags": [],
@@ -35,9 +35,9 @@
         {
           "name": "default",
           "anchor": "top_left",
-          "offsetX": "5px",
+          "offsetX": "10px",
           "offsetY": "4px",
-          "width": "1910px",
+          "width": "1684px",
           "height": "36px",
           "monitorSelection": {
             "type": "all"
