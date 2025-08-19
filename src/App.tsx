@@ -4,14 +4,14 @@ import { Center } from "./components/Center";
 import { Chip } from "./components/common/Chip";
 import Media from "./components/media";
 import Stat from "./components/stat";
-import { weatherThresholds } from "./components/stat/defaults/thresholds";
+// import { weatherThresholds } from "./components/stat/defaults/thresholds";
 import { TilingControl } from "./components/TilingControl";
 import VolumeControl from "./components/volume";
 import { WindowTitle } from "./components/windowTitle/WindowTitle";
 import { WorkspaceControls } from "./components/WorkspaceControls";
 import "./styles/fonts.css";
 import { useAutoTiling } from "./utils/useAutoTiling";
-import { getWeatherIcon } from "./utils/weatherIcons";
+// import { getWeatherIcon } from "./utils/weatherIcons";
 // import Systray from "./components/systray";
 
 const providers = zebar.createProviderGroup({
@@ -83,14 +83,6 @@ function App() {
               />
             )}
 
-            {output.weather && (
-              <Stat
-                Icon={getWeatherIcon(output.weather, statIconClassnames)}
-                stat={`${Math.round(output.weather.celsiusTemp)}°C`}
-                threshold={weatherThresholds}
-                type="inline"
-              />
-            )}
           </Chip>
         </div>
 
