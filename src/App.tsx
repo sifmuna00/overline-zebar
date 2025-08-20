@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as zebar from "zebar";
 import { Center } from "./components/Center";
 import { Chip } from "./components/common/Chip";
+import { KeyboardLayout } from "./components/keyboard";
 import Media from "./components/media";
 import Stat from "./components/stat";
 import { batteryThresholds, networkSpeedThresholds } from "./components/stat/defaults/thresholds";
@@ -25,6 +26,7 @@ const providers = zebar.createProviderGroup({
   date: { type: "date", formatting: "EEE d MMM t", locale: "en-GB" },
   memory: { type: "memory" },
   audio: { type: "audio" },
+  keyboard: { type: "keyboard" },
 });
 
 function App() {
@@ -93,7 +95,6 @@ function App() {
               />
             )}
 
-
             {output.network?.traffic && (
               <>
                 <Stat
@@ -124,6 +125,9 @@ function App() {
           />
         </div>
 
+        <div className="flex items-center h-full">
+          <KeyboardLayout layout={output.keyboard?.layout} />
+        </div>
 
         {/* <div className="h-full flex items-center px-0.5 pr-1">
           <Systray systray={output.systray} />
