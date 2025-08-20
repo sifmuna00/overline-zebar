@@ -13,3 +13,9 @@ export const weatherThresholds: Thresholds = [
   { min: 16, max: 25, label: LabelType.WARNING },
   { min: 26, max: 35, label: LabelType.DANGER },
 ];
+
+export const batteryThresholds: Thresholds = [
+  { min: 0, max: 20, label: LabelType.DANGER },
+  { min: 21, max: 50, label: LabelType.WARNING },
+  { min: 51, max: 100, label: LabelType.DEFAULT },
+];

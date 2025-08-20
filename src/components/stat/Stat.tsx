@@ -1,6 +1,6 @@
 import { StatInline } from "./components/StatInline";
 import { StatRing } from "./components/StatRing";
-import { systemStatThresholds, weatherThresholds } from "./defaults/thresholds";
+import { systemStatThresholds, batteryThresholds } from "./defaults/thresholds";
 import { Thresholds } from "./types/thresholds";
 
 interface StatProps {
@@ -18,7 +18,7 @@ export default function Stat(props: StatProps) {
         <StatRing {...p} threshold={p.threshold ?? systemStatThresholds} />
       );
     case "inline":
-      return <StatInline {...p} threshold={p.threshold ?? weatherThresholds} />;
+      return <StatInline {...p} threshold={p.threshold ?? batteryThresholds} />;
     default:
       return null;
   }

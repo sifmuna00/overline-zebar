@@ -4,13 +4,14 @@ import { Center } from "./components/Center";
 import { Chip } from "./components/common/Chip";
 import Media from "./components/media";
 import Stat from "./components/stat";
-// import { weatherThresholds } from "./components/stat/defaults/thresholds";
+import { batteryThresholds } from "./components/stat/defaults/thresholds";
 import { TilingControl } from "./components/TilingControl";
 import VolumeControl from "./components/volume";
 import { WindowTitle } from "./components/windowTitle/WindowTitle";
 import { WorkspaceControls } from "./components/WorkspaceControls";
 import "./styles/fonts.css";
 import { useAutoTiling } from "./utils/useAutoTiling";
+import { getBatteryIcon } from "./utils/batteryIcons";
 // import { getWeatherIcon } from "./utils/weatherIcons";
 // import Systray from "./components/systray";
 
@@ -18,12 +19,11 @@ const providers = zebar.createProviderGroup({
   media: { type: "media" },
   network: { type: "network" },
   glazewm: { type: "glazewm" },
+  battery: { type: "battery" },
   cpu: { type: "cpu" },
   date: { type: "date", formatting: "EEE d MMM t", locale: "en-GB" },
   memory: { type: "memory" },
-  weather: { type: "weather" },
   audio: { type: "audio" },
-  systray: { type: "systray" },
 });
 
 function App() {
@@ -80,6 +80,15 @@ function App() {
                 Icon={<p className="font-medium text-icon">RAM</p>}
                 stat={`${Math.round(output.memory.usage)}%`}
                 type="ring"
+              />
+            )}
+
+            {output.battery && (
+              <Stat
+                Icon={getBatteryIcon(output.battery, statIconClassnames)}
+                stat={`${Math.round(output.battery.chargePercent)}%`}
+                type="inline"
+                threshold={batteryThresholds}
               />
             )}
 
