@@ -103,13 +103,13 @@ function App() {
                   threshold={networkSpeedThresholds}
                   value={getNetworkSpeedInMBps(output.network.traffic.received.bytes)}
                 />
-                <Stat
+                {/* <Stat
                   Icon={getNetworkSpeedIcon('upload', statIconClassnames)}
                   stat={formatNetworkSpeed(output.network.traffic.transmitted.bytes)}
                   type="inline"
                   threshold={networkSpeedThresholds}
                   value={getNetworkSpeedInMBps(output.network.traffic.transmitted.bytes)}
-                />
+                /> */}
               </>
             )}
 
