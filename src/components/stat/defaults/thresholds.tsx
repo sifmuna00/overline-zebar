@@ -17,5 +17,10 @@ export const weatherThresholds: Thresholds = [
 export const batteryThresholds: Thresholds = [
   { min: 0, max: 20, label: LabelType.DANGER },
   { min: 21, max: 50, label: LabelType.WARNING },
-  { min: 51, max: 100, label: LabelType.DEFAULT },
+  { min: 51, max: 100, label: LabelType.SUCCESS },
+];
+
+export const networkSpeedThresholds: Thresholds = [
+  { min: 0, max: 10, label: LabelType.DEFAULT },   // 0-10 MB/s - moderate
+  { min: 10, max: 1000, label: LabelType.SUCCESS }, // > 10 MB/s - fast
 ];

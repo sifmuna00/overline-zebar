@@ -8,6 +8,7 @@ interface StatProps {
   stat: string;
   threshold?: Thresholds;
   type: "ring" | "inline";
+  value?: number;
 }
 
 export default function Stat(props: StatProps) {

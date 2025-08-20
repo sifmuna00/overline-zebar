@@ -7,12 +7,14 @@ interface StatProps {
   Icon: React.ReactNode;
   stat: string;
   threshold?: Thresholds;
+  value?: number;
 }
 
 export function StatInline({
   Icon,
   stat,
   threshold = systemStatThresholds,
+  value,
 }: StatProps) {
   function getNumbersFromString(str: string) {
     const numbers = str.match(/-?\d+/g)?.map(Number);
@@ -24,14 +26,15 @@ export function StatInline({
     return range ? range.label : LabelType.DEFAULT;
   }
 
-  const statAsInt = getNumbersFromString(stat);
+  const statAsInt = value !== undefined ? value : getNumbersFromString(stat);
   const thresholdLabel = getThresholdLabel(statAsInt);
 
   return (
     <div
       className={cn(
         "flex items-center justify-center gap-1.5",
-        thresholdLabel === LabelType.DEFAULT && "text-success",
+        thresholdLabel === LabelType.DEFAULT && "text-text",
+        thresholdLabel === LabelType.SUCCESS && "text-success",
         thresholdLabel === LabelType.WARNING && "text-warning",
         thresholdLabel === LabelType.DANGER && "text-danger"
       )}

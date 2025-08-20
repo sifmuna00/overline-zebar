@@ -4,7 +4,7 @@ import { Center } from "./components/Center";
 import { Chip } from "./components/common/Chip";
 import Media from "./components/media";
 import Stat from "./components/stat";
-import { batteryThresholds } from "./components/stat/defaults/thresholds";
+import { batteryThresholds, networkSpeedThresholds } from "./components/stat/defaults/thresholds";
 import { TilingControl } from "./components/TilingControl";
 import VolumeControl from "./components/volume";
 import { WindowTitle } from "./components/windowTitle/WindowTitle";
@@ -12,6 +12,7 @@ import { WorkspaceControls } from "./components/WorkspaceControls";
 import "./styles/fonts.css";
 import { useAutoTiling } from "./utils/useAutoTiling";
 import { getBatteryIcon } from "./utils/batteryIcons";
+import { getNetworkSpeedIcon, formatNetworkSpeed, getNetworkSpeedInMBps } from "./utils/networkIcons";
 // import { getWeatherIcon } from "./utils/weatherIcons";
 // import Systray from "./components/systray";
 
@@ -90,6 +91,26 @@ function App() {
                 type="inline"
                 threshold={batteryThresholds}
               />
+            )}
+
+
+            {output.network?.traffic && (
+              <>
+                <Stat
+                  Icon={getNetworkSpeedIcon('download', statIconClassnames)}
+                  stat={formatNetworkSpeed(output.network.traffic.received.bytes)}
+                  type="inline"
+                  threshold={networkSpeedThresholds}
+                  value={getNetworkSpeedInMBps(output.network.traffic.received.bytes)}
+                />
+                <Stat
+                  Icon={getNetworkSpeedIcon('upload', statIconClassnames)}
+                  stat={formatNetworkSpeed(output.network.traffic.transmitted.bytes)}
+                  type="inline"
+                  threshold={networkSpeedThresholds}
+                  value={getNetworkSpeedInMBps(output.network.traffic.transmitted.bytes)}
+                />
+              </>
             )}
 
           </Chip>
