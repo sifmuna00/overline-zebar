@@ -1,9 +1,10 @@
-import { ChevronRight, Search } from "lucide-react";
+import { ChevronRight, Play, Pause } from "lucide-react";
 import { cn } from "../utils/cn";
 import { Button } from "./common/Button";
 import { GlazeWmOutput } from "zebar";
 import { motion, AnimatePresence } from "framer-motion";
 import { useConfig } from "../context/ConfigContext";
+import { useState } from "react";
 
 interface TilingControlProps {
   glazewm: GlazeWmOutput | null;
@@ -11,8 +12,14 @@ interface TilingControlProps {
 
 export function TilingControl({ glazewm }: TilingControlProps) {
   const { flowLauncherPath, isLoading } = useConfig();
-  
+  const [isWMPaused, setIsWMPaused] = useState(false);
+
   if (!glazewm) return null;
+
+  const handleWMTogglePause = () => {
+    glazewm.runCommand('wm-toggle-pause');
+    setIsWMPaused(!isWMPaused);
+  };
 
   return (
     <>
@@ -32,18 +39,16 @@ export function TilingControl({ glazewm }: TilingControlProps) {
       </AnimatePresence>
 
       <Button
-        onClick={() => {
-          if (flowLauncherPath && !isLoading) {
-            console.log("Flow Launcher path:", flowLauncherPath);
-            glazewm.runCommand(`shell-exec ${flowLauncherPath}`);
-          } else if (isLoading) {
-            console.warn("Configuration is still loading...");
-          } else {
-            console.warn("Flow Launcher path not configured in config.json");
-          }
-        }}
+        onClick={handleWMTogglePause}
+        className={cn(
+          isWMPaused && "text-red-500 hover:text-red-400"
+        )}
       >
-        <Search strokeWidth={3} className="h-3 w-3" />
+        {isWMPaused ? (
+          <Play strokeWidth={2} className="h-3 w-3" />
+        ) : (
+          <Pause strokeWidth={2} className="h-3 w-3" />
+        )}
       </Button>
 
       <Button onClick={() => glazewm.runCommand("toggle-tiling-direction")}>
