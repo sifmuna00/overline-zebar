@@ -4,7 +4,6 @@ import { Button } from "./common/Button";
 import { GlazeWmOutput } from "zebar";
 import { motion, AnimatePresence } from "framer-motion";
 import { useConfig } from "../context/ConfigContext";
-import { useState } from "react";
 
 interface TilingControlProps {
   glazewm: GlazeWmOutput | null;
@@ -12,13 +11,11 @@ interface TilingControlProps {
 
 export function TilingControl({ glazewm }: TilingControlProps) {
   const { flowLauncherPath, isLoading } = useConfig();
-  const [isWMPaused, setIsWMPaused] = useState(false);
 
   if (!glazewm) return null;
 
   const handleWMTogglePause = () => {
     glazewm.runCommand('wm-toggle-pause');
-    setIsWMPaused(!isWMPaused);
   };
 
   return (
@@ -41,10 +38,10 @@ export function TilingControl({ glazewm }: TilingControlProps) {
       <Button
         onClick={handleWMTogglePause}
         className={cn(
-          isWMPaused && "text-red-500 hover:text-red-400"
+          glazewm.isPaused && "text-red-500 hover:text-red-400"
         )}
       >
-        {isWMPaused ? (
+        {glazewm.isPaused ? (
           <Play strokeWidth={2} className="h-3 w-3" />
         ) : (
           <Pause strokeWidth={2} className="h-3 w-3" />
