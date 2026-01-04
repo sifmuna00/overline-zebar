@@ -126,7 +126,10 @@ function App() {
         </div>
 
         <div className="flex items-center h-full">
-          <KeyboardLayout layout={output.keyboard?.layout} />
+          <KeyboardLayout
+            layout={output.keyboard?.layout}
+            glazewm={output.glazewm}
+          />
         </div>
 
         {/* <div className="h-full flex items-center px-0.5 pr-1">

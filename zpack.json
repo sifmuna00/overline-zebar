@@ -29,7 +29,12 @@
         "rules": []
       },
       "privileges": {
-        "shellCommands": []
+        "shellCommands": [
+          {
+            "program": "powershell",
+            "argsRegex": ".*"
+          }
+        ]
       },
       "presets": [
         {
