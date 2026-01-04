@@ -89,14 +89,14 @@ export const KeyboardLayout: React.FC<KeyboardLayoutProps> = ({ layout, glazewm 
     const cycleLayout = async () => {
         const handle = (glazewm?.focusedContainer as any)?.handle;
         const script = PS_SCRIPT_TEMPLATE.replace('{{HANDLE_PLACEHOLDER}}', (handle || 0).toString());
-        
+
         // Encode to UTF-16LE Base64 for PowerShell -EncodedCommand
         const codePoints = [];
         for (let i = 0; i < script.length; i++) {
             codePoints.push(script.charCodeAt(i) & 0xff);
             codePoints.push((script.charCodeAt(i) >> 8) & 0xff);
         }
-        
+
         let binary = '';
         const bytes = new Uint8Array(codePoints);
         const len = bytes.byteLength;
