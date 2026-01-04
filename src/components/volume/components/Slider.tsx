@@ -44,7 +44,7 @@ export default function Slider({
         onValueChange={([v]) => setValue(Math.floor(v))}
         onClick={(e) => e.stopPropagation()}
         step={0.01}
-        className="relative flex w-full cursor-grab touch-none select-none rounded-full items-center active:cursor-grabbing"
+        className="relative flex h-6 w-full cursor-grab touch-none select-none items-center active:cursor-grabbing"
         onPointerMove={(e) => {
           e.stopPropagation();
           if (e.buttons > 0) {
@@ -55,9 +55,9 @@ export default function Slider({
           overflow.set(0);
         }}
       >
-        <RadixSlider.Track className="relative isolate h-2 w-full rounded-full bg-background border border-border">
+        <RadixSlider.Track className="relative isolate h-6 w-full before:absolute before:left-0 before:right-0 before:top-1/2 before:h-2 before:-translate-y-1/2 before:rounded-full before:bg-background before:border before:border-border">
           <RadixSlider.Range
-            className="absolute h-full bg-primary rounded-full"
+            className="absolute left-0 top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary"
             style={{
               width: `${value}%`,
             }}
